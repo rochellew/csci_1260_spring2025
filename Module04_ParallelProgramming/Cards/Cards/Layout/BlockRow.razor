@@ -1,0 +1,15 @@
+﻿@using Cards.Models
+
+<tr>
+    <td>
+        @thisRow?.Name
+    </td>
+    <td>
+        @thisRow?.Description
+    </td>
+</tr>
+
+@code {
+    [Parameter]
+    public Block? thisRow { get; set; }
+}

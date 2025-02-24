@@ -1,0 +1,50 @@
+﻿@using Cards.Models
+@using Cards.Services
+
+@page "/blocks"
+
+@inject IBlockService BlockService
+
+<PageTitle>Blocks List</PageTitle>
+
+<h3>Blocks List</h3>
+
+<button class = "btn btn-primary" @onclick="ShuffleBlocks">Shuffle The Blocks</button>
+<br/>
+<br/>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                Block Name
+            </th>            
+            <th scope="col">
+                Block Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(blocks != null)
+        {
+            foreach(var block in blocks)
+            {
+                <BlockRow thisRow="@block"></BlockRow>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    List<Block>? blocks;
+
+    protected void ShuffleBlocks()
+    {
+        if(blocks != null)
+            blocks = blocks?.OrderBy(b => new Random().Next()).ToList();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        blocks = await BlockService.GetBlocksAsync();
+    }
+}

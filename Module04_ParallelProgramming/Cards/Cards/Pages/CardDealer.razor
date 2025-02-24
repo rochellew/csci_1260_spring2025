@@ -1,0 +1,40 @@
+﻿@using Cards.Services
+@using Cards.Models
+@page "/carddealer"
+@inject ICardDeckService CardDeckService
+
+
+<PageTitle>Card Dealer</PageTitle>
+
+<h3>Card Dealer</h3>
+
+<div>
+    <button class="btn btn-primary" @onclick="DealCard">Deal a Card</button>
+    <p>Cards remaining: @CardsRemaining</p>
+</div>
+
+@if (DealtCard != null)
+{
+    <div class="card @(IsDealing ? "dealing" : "")">
+        <p>@DealtCard</p>
+    </div>
+}
+
+@code {
+    private Card? DealtCard;
+    private int CardsRemaining = 52;
+    private bool IsDealing = false;
+    private string ButtonLabel => IsDealing ? "Dealing..." : "Deal a Card";
+
+    private async Task DealCard()
+    {
+        IsDealing = true;
+        await Task.Delay(1000); // Simulate dealing animation
+        DealtCard = await CardDeckService.DealCardAsync();
+        if (DealtCard != null)
+        {
+            CardsRemaining--;
+        }
+        IsDealing = false;
+    }
+}
