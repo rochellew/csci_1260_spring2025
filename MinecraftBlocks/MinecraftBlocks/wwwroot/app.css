@@ -1,0 +1,191 @@
+﻿/* Import Minecraft-style Pixelated Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Global Styles */
+body {
+    background-color: #282828;
+    background-image: url('https://www.minecraft.net/content/dam/games/minecraft/key-art/MC-generic-keyart.jpg'); /* Replace with a tileable grass texture */
+    background-size: cover;
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #EEDC82;
+    text-shadow: 3px 3px 0px #000;
+    text-transform: uppercase;
+}
+
+/* Loading Text */
+.loading-text {
+    font-size: 1.2rem;
+    color: #EEDC82;
+    text-shadow: 2px 2px 0px #000;
+    margin-top: 20px;
+}
+
+/* Minecraft Table */
+.minecraft-table {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    border-collapse: collapse;
+    background-color: #3E3E3E;
+    box-shadow: 5px 5px 0px #111;
+    border: 4px solid #2A2A2A;
+}
+
+    .minecraft-table th, .minecraft-table td {
+        padding: 10px;
+        border: 2px solid #777;
+        text-align: left;
+        font-family: 'Press Start 2P';
+        text-transform: uppercase;
+    }
+
+    .minecraft-table th {
+        background-color: #497A32;
+        color: #fff;
+    }
+
+    .minecraft-table tr:nth-child(even) {
+        background-color: #282828;
+    }
+
+    .minecraft-table tr:hover {
+        background-color: #5F9A3F;
+        transition: background 0.2s ease-in-out;
+    }
+
+/* Block Image */
+.block-img {
+    width: 48px;
+    height: 48px;
+    image-rendering: pixelated; /* Ensures pixel-art stays crisp */
+}
+
+/* Buttons */
+button, .btn {
+    background-color: #497A32;
+    border: 4px solid #3E5F2D;
+    color: white;
+    padding: 10px 15px;
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+    button:hover, .btn:hover {
+        background-color: #5F9A3F;
+        border-color: #497A32;
+    }
+
+/* Inputs & Textareas */
+input, select, textarea {
+    background-color: #333;
+    border: 3px solid #777;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    padding: 5px;
+    outline: none;
+}
+
+    input:focus, select:focus, textarea:focus {
+        border-color: #EEDC82;
+    }
+
+/* Validation Styles */
+.valid.modified:not([type=checkbox]) {
+    border: 3px solid #26b050;
+}
+
+.invalid {
+    border: 3px solid #e50000;
+}
+
+/* Error Message */
+.validation-message {
+    color: #e50000;
+}
+
+/* Minecraft-styled Error Boundary */
+.blazor-error-boundary {
+    background: #b32121;
+    border: 4px solid #8B0000;
+    padding: 20px;
+    color: white;
+    text-shadow: 2px 2px 0px #000;
+    box-shadow: 5px 5px 0px #111;
+}
+
+    .blazor-error-boundary::after {
+        content: "ERROR: Something went wrong!";
+        display: block;
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+/* Checkboxes */
+.darker-border-checkbox.form-check-input {
+    border-color: #777;
+    width: 20px;
+    height: 20px;
+    background-color: #444;
+    cursor: pointer;
+}
+
+    .darker-border-checkbox.form-check-input:checked {
+        background-color: #497A32;
+        border-color: #3E5F2D;
+    }
+
+/* Minecraft Button */
+.minecraft-btn {
+    background-color: #497A32; /* Minecraft green */
+    border: 4px solid #3E5F2D;
+    color: white;
+    padding: 10px 20px;
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 4px 4px 0px #111;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 10px;
+}
+
+    .minecraft-btn:hover {
+        background-color: #5F9A3F;
+        border-color: #497A32;
+        transform: translateY(-2px);
+        box-shadow: 6px 6px 0px #000;
+    }
+
+    .minecraft-btn:active {
+        background-color: #3E5F2D;
+        border-color: #2A2A2A;
+        transform: translateY(2px);
+        box-shadow: 2px 2px 0px #111;
+    }
+
+/* Sort Button */
+.sort-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #EEDC82;
+    cursor: pointer;
+    margin-left: 8px;
+    text-shadow: 2px 2px 0px #000;
+}
+
+    .sort-btn:hover {
+        color: #fff;
+        transform: scale(1.1);
+    }

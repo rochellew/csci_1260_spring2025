@@ -1,0 +1,91 @@
+﻿@using MinecraftBlocks.Services
+@using MinecraftBlocks.Models
+
+@page "/"
+
+@inject IBlockService BlockService
+
+<h1>Minecraft Blocks</h1>
+
+@if (blocks == null)
+{
+    <p class="loading-text">⛏️ Loading Blocks...</p>
+}
+else
+{
+    <button class="minecraft-btn" @onclick=ShuffleBlocks>Shufle Blocks</button>
+    <table class="minecraft-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>
+                    Name
+                    <button class="sort-btn" @onclick="ToggleSort">
+                        @(sortAscending ? "⬆" : "⬇")
+                    </button>
+                </th>
+                <th>Description</th>
+                <th>Transparent</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var block in blocks)
+            {
+                <tr>
+                    <td><img src="@block.Image" alt="@block.Name" class="block-img" /></td>
+                    <td>@block.Name</td>
+                    <td>@block.Description</td>
+                    <td>@(block.Transparent ? "✅ Yes" : "❌ No")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Block>? blocks;
+
+    protected override void OnInitialized()
+    {
+        blocks = BlockService.GetBlocks();
+    }
+
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     blocks = await BlockService.GetBlocksAsync();
+    // }
+
+    private bool sortAscending = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        blocks = await BlockService.GetBlocksAsync();
+        SortBlocks();
+    }
+
+    private void ToggleSort()
+    {
+        sortAscending = !sortAscending;
+        SortBlocks();
+    }
+
+    private void SortBlocks()
+    {
+        if (blocks != null)
+        {
+            blocks = sortAscending
+                ? blocks.OrderBy(b => b.Name).ToList()
+                : blocks.OrderByDescending(b => b.Name).ToList();
+        }
+    }
+
+    private void ShuffleBlocks()
+    {
+        if(blocks != null)
+        {
+            blocks = blocks.OrderBy(b => new Random().Next()).ToList(); // random integers
+            // blocks = blocks.OrderBy(b => Guid.NewGuid()).ToList();      // random IDs instead of random integers
+        }
+    }
+}
+
